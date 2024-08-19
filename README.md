@@ -4,6 +4,7 @@
 1. Have a disconnected OpenShift single-node cluster.
 2. Have an internal image registry, running on the same network subnet of the cluster node.
 3. Push the following images to the registry:
+
 	a.  `quay.io/yshnaidm/node-exporter:latest`.
 
 	b.  `quay.io/yshnaidm/amd-gpu-operator:latest`.
