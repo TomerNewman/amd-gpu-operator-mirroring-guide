@@ -4,17 +4,17 @@
 1. Have a disconnected OpenShift single-node cluster.
 2. Have an internal image registry, running on the same network subnet of the cluster node.
 3. Push the following images to the registry:
-	a.  quay.io/yshnaidm/node-exporter:latest.
+	a.  `quay.io/yshnaidm/node-exporter:latest`.
 
-	b.  quay.io/yshnaidm/amd-gpu-operator:latest.
+	b.  `quay.io/yshnaidm/amd-gpu-operator:latest`.
 
-	c.  quay.io/yshnaidm/amd-gpu-operator:v0.0.4 (only from bundle).
+	c.  `quay.io/yshnaidm/amd-gpu-operator:v0.0.4 (only from bundle)`.
 
-	d.  quay.io/yshnaidm/amd_gpu_sources:el9-6.1.1.
+	d.  `quay.io/yshnaidm/amd_gpu_sources:el9-6.1.1`.
 
-	e.  docker.io/rocm/k8s-device-plugin:labeller-latest.
+	e.  `docker.io/rocm/k8s-device-plugin:labeller-latest`.
 
-	f.  docker.io/rocm/k8s-device-plugin:latest.
+	f.  `docker.io/rocm/k8s-device-plugin:latest`.
 
 
  
