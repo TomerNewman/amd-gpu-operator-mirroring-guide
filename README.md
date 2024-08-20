@@ -19,8 +19,8 @@
 
 
  
-5. Mirror the OpenShift cluster's release image to the internal registry (release image can be found using `oc adm release info`).
-6. The following operators should be already installed: `Kernel Module Management (KMM)`, `Node Feature Discovery (NFD)`, `AMD GPU operator`.
+4. Mirror the OpenShift cluster's release image to the internal registry (release image can be found using `oc adm release info`).
+5. The following operators should be already installed: `Kernel Module Management (KMM)`, `Node Feature Discovery (NFD)`, `AMD GPU operator`.
 
 ---
 
@@ -29,8 +29,26 @@
 1. Access the node using `oc debug node/<node_name>` . 
 2. Use host binaries using `chroot /host`.
 3. Add the following configurations to `/etc/containers/registry.conf`:
-4. Restart the container runtime using `systemctl restart crio`.
-5. Apply your `DeviceConfig` CR.
+```
+  [[registry]]
+   prefix = ""
+   location = "quay.io/yshnaidm"
+
+   [[registry.mirror]]
+       location = "<internal_registry_host>:<internal_registry_port>/yshnaidm"
+       pull-from-mirror = "all"
+   
+[[registry]]
+   prefix = ""
+   location = "docker.io/rocm"
+
+   [[registry.mirror]]
+       location = "<internal_registry_host>:<internal_registry_port>/rocm"
+       pull-from-mirror = "all"
+```
+   
+5. Restart the container runtime using `systemctl restart crio`.
+6. Apply your `DeviceConfig` CR.
 
 
    
