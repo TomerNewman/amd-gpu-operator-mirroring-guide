@@ -30,21 +30,21 @@
 2. Use host binaries using `chroot /host`.
 3. Add the following configurations to `/etc/containers/registry.conf`:
 ```
-  [[registry]]
-   prefix = ""
-   location = "quay.io/yshnaidm"
+[[registry]]
+  prefix = ""
+  location = "quay.io/yshnaidm"
 
-   [[registry.mirror]]
-       location = "<internal_registry_host>:<internal_registry_port>/yshnaidm"
-       pull-from-mirror = "all"
+  [[registry.mirror]]
+    location = "<internal_registry_host>:<internal_registry_port>/yshnaidm"
+    pull-from-mirror = "all"
    
 [[registry]]
-   prefix = ""
-   location = "docker.io/rocm"
+  prefix = ""
+  location = "docker.io/rocm"
 
-   [[registry.mirror]]
-       location = "<internal_registry_host>:<internal_registry_port>/rocm"
-       pull-from-mirror = "all"
+  [[registry.mirror]]
+    location = "<internal_registry_host>:<internal_registry_port>/rocm"
+    pull-from-mirror = "all"
 ```
    
 5. Restart the container runtime using `systemctl restart crio`.
