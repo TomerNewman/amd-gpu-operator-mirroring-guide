@@ -15,14 +15,14 @@
 
 	e.  `docker.io/rocm/k8s-device-plugin:latest`.
 
-	f.  `quay.io/yshnaidm/amd_gpu_sources:el9-6.1.1`.
-
-	g.  `registry.redhat.io/ubi9/ubi-minimal`.
-
  
 4. Mirror the OpenShift cluster's release image to the internal registry (release image can be found using `oc adm release info`).
 
 5. The following operators should be already installed: `Kernel Module Management (KMM)`, `Node Feature Discovery (NFD)`, `AMD GPU operator`.
+
+### Note
+   1. Each base image that is located in the Dockerfile of the Build yaml, should be also pushed to the internal registry.
+   2. Each of those images should be written as digest and not with tag, and also be in the internal registry.
 
 ---
 
@@ -47,9 +47,14 @@ spec:
     source: registry.redhat.io/ubi9
 ```
 
-1. Access the node using `oc debug node/<node_name>` . 
-2. Use host binaries using `chroot /host`.
-3. Change `pull-from-mirror` to `all` in `/etc/containers/registry.conf` as follows:
+note that if there are additional base images that are in the Dockerfile of the Build yaml, it should be in the ImageContentSourcePolicy resource, at the same format.
+
+2. Access the node using `oc debug node/<node_name>` .
+
+3. Use host binaries using `chroot /host`.
+
+4. Change `pull-from-mirror` to `all` in `/etc/containers/registry.conf` as follows:
+
 ```
 [[registry]]
   prefix = ""
@@ -71,6 +76,7 @@ spec:
 
 ```
    
-4. Restart the container runtime using `systemctl restart crio`.
-5. Apply your `DeviceConfig` CR.
+5. Restart the container runtime using `systemctl restart crio`.
+
+6. Apply your `DeviceConfig` CR.
 
