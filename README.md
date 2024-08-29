@@ -20,10 +20,6 @@
 
 5. The following operators should be already installed: `Kernel Module Management (KMM)`, `Node Feature Discovery (NFD)`, `AMD GPU operator`.
 
-#### Note
-   1. Each base image that is located in the Dockerfile of the Build yaml, should be also pushed to the internal registry.
-   2. Each of those images should be written as digest and not with tag in the Dockerfile.
-
 ---
 
 
@@ -46,8 +42,9 @@ spec:
       - <Internal_registry_name>:<Port>
     source: registry.redhat.io/ubi9
 ```
-#### Note
-If there are base images that are in the Dockerfile of the Build yaml, they should be in the ImageContentSourcePolicy resource, at the same format as the following mirror rules.
+#### Notice
+- If there are base images that are in the Dockerfile of the Build yaml, they should be in the ImageContentSourcePolicy resource, at the same format as the following mirror rules.
+- Each of the images that are mentioned in the Dockerfile, should be written there with digest instead of tag, in order for the ICSP mirroring to work properly.
 
 2. Access the node using `oc debug node/<node_name>` .
 
