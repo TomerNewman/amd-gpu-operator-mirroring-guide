@@ -20,9 +20,9 @@
 
 5. The following operators should be already installed: `Kernel Module Management (KMM)`, `Node Feature Discovery (NFD)`, `AMD GPU operator`.
 
-### Note
+#### Note
    1. Each base image that is located in the Dockerfile of the Build yaml, should be also pushed to the internal registry.
-   2. Each of those images should be written as digest and not with tag, and also be in the internal registry.
+   2. Each of those images should be written as digest and not with tag in the Dockerfile.
 
 ---
 
@@ -46,14 +46,14 @@ spec:
       - <Internal_registry_name>:<Port>
     source: registry.redhat.io/ubi9
 ```
-
-note that if there are additional base images that are in the Dockerfile of the Build yaml, it should be in the ImageContentSourcePolicy resource, at the same format.
+#### note
+If there are base images that are in the Dockerfile of the Build yaml, they should be in the ImageContentSourcePolicy resource, at the same format as the following mirror rules.
 
 2. Access the node using `oc debug node/<node_name>` .
 
 3. Use host binaries using `chroot /host`.
 
-4. Change `pull-from-mirror` to `all` in `/etc/containers/registry.conf` as follows:
+4. Change `pull-from-mirror` to `all` in `/etc/containers/registry.conf` for the following rules only:
 
 ```
 [[registry]]
