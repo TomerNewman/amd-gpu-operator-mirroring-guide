@@ -46,7 +46,7 @@ spec:
       - <Internal_registry_name>:<Port>
     source: registry.redhat.io/ubi9
 ```
-#### note
+#### Note
 If there are base images that are in the Dockerfile of the Build yaml, they should be in the ImageContentSourcePolicy resource, at the same format as the following mirror rules.
 
 2. Access the node using `oc debug node/<node_name>` .
